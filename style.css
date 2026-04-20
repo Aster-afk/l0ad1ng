@@ -1029,11 +1029,39 @@ footer {
    EXTENDED RANKS (6-column grid)
 ───────────────────────────────────────── */
 .ranks-grid-full {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  display: flex;
   gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
- 
+
+.ranks-grid-full .rank-card {
+  min-width: 200px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.ranks-grid-full::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ranks-grid-full::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  margin: 0 0.5rem;
+}
+
+.ranks-grid-full::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, var(--green), var(--yellow), var(--purple));
+  border-radius: 999px;
+}
+
+.ranks-grid-full::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, var(--yellow), var(--green));
+  opacity: 0.9;
+}
 /* Purple badge for Miffins */
 .badge-purple2 {
   display: inline-block;
@@ -1490,18 +1518,15 @@ footer {
   }
 }
  
-
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .burger    { display: flex; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .ip-text   { font-size: 8px; }
   .perms-grid { grid-template-columns: 1fr; }
-  .ranks-grid-full { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
   .hero h1  { font-size: 18px; }
   .copy-btn { padding: 0.75rem 1rem; font-size: 12px; }
-  .ranks-grid-full { grid-template-columns: 1fr; }
 }
